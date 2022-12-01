@@ -1,17 +1,34 @@
 fun main() {
+    fun getCaloriesPerElf(input: List<String>): Array<Int> {
+        val calories = Array(input.count { it == "" } + 2) { 0 }
+        var elf = 1
+        input.forEach {
+            if (it == "") {
+                elf++
+            } else {
+                calories[elf] = calories[elf] + it.toInt()
+            }
+        }
+        return calories
+    }
+
     fun part1(input: List<String>): Int {
-        return input.size
+        val calories = getCaloriesPerElf(input)
+        return calories.max()
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val calories = getCaloriesPerElf(input).also { array -> array.sortBy { it } }
+        var sum = 0
+        calories.lastIndex.let { idx ->
+            (idx downTo idx - 2).forEach {
+                sum += calories[it]
+            }
+        }
+        return sum
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    val input = readInput("day01")
+    println("part1: ${part1(input)}")
+    println("part2: ${part2(input)}")
 }
