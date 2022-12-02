@@ -10,9 +10,9 @@ fun main() {
 fun part1(input: List<String>): Int {
     var points = 0
     input.forEach { round ->
-        val (rival, player) = round.split(" ")
+        val (opponent, player) = round.split(" ")
         points += symbolUsagePoints(player)
-        points += determineRoundPoints(rival, player)
+        points += determineRoundPoints(opponent, player)
     }
     return points
 }
@@ -41,8 +41,8 @@ fun symbolUsagePoints(player: String) = when (player) {
 fun part2(input: List<String>): Int {
     var points = 0
     input.forEach { round ->
-        val (rival, result) = round.split(" ")
-        val rivalPlayed = when (rival) {
+        val (opponent, result) = round.split(" ")
+        val opponentPlayed = when (opponent) {
             "A" -> Plays.Rock
             "B" -> Plays.Paper
             "C" -> Plays.Scissors
@@ -54,28 +54,28 @@ fun part2(input: List<String>): Int {
             "Z" -> Result.Win
             else -> throw IllegalArgumentException("wrong result")
         }
-        points += calculateStrategy(rivalPlayed, resultNeeded)
+        points += calculateStrategy(opponentPlayed, resultNeeded)
     }
     return points
 }
-fun calculateStrategy(rivalPlays: Plays, resultNeeded: Result): Int {
+fun calculateStrategy(opponentPlays: Plays, resultNeeded: Result): Int {
     val points: Int = when(resultNeeded) {
         Result.Win -> {
-            6 + when(rivalPlays) {
+            6 + when(opponentPlays) {
                 Plays.Rock -> 2
                 Plays.Paper -> 3
                 Plays.Scissors -> 1
             }
         }
         Result.Draw -> {
-            3 + when(rivalPlays) {
+            3 + when(opponentPlays) {
                 Plays.Rock -> 1
                 Plays.Paper -> 2
                 Plays.Scissors -> 3
             }
         }
         Result.Lose -> {
-            when(rivalPlays) {
+            when(opponentPlays) {
                 Plays.Rock -> 3
                 Plays.Paper -> 1
                 Plays.Scissors -> 2
