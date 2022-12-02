@@ -94,12 +94,12 @@ fun main() {
 enum class Result {
     Win, Draw, Lose
 }
-//first part
+//second part
 enum class Plays {
     Rock, Paper, Scissors
 }
 
-//second part
+//first part
 object Player {
     val rock = "X"
     val paper = "Y"
