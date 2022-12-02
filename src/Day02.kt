@@ -16,6 +16,7 @@ fun part1(input: List<String>): Int {
     }
     return points
 }
+
 fun determineRoundPoints(opponent: String, player: String): Int {
     val isDraw = (player == Player.rock && opponent == Opponent.rock)
             || (player == Player.paper && opponent == Opponent.paper)
@@ -42,53 +43,63 @@ fun part2(input: List<String>): Int {
     var points = 0
     input.forEach { round ->
         val (opponent, result) = round.split(" ")
-        val opponentPlayed = when (opponent) {
-            "A" -> Plays.Rock
-            "B" -> Plays.Paper
-            "C" -> Plays.Scissors
-            else -> throw IllegalArgumentException("played the wrong symbol")
-        }
-        val resultNeeded = when (result){
-            "X" -> Result.Lose
-            "Y" -> Result.Draw
-            "Z" -> Result.Win
-            else -> throw IllegalArgumentException("wrong result")
-        }
-        points += calculateStrategy(opponentPlayed, resultNeeded)
+        points += calculateStrategy(
+            opponentPlays = mapPlays(opponent),
+            resultNeeded = mapResult(result)
+        )
     }
     return points
 }
-fun calculateStrategy(opponentPlays: Plays, resultNeeded: Result): Int {
-    val points: Int = when(resultNeeded) {
+
+fun calculateStrategy(opponentPlays: Plays, resultNeeded: Result) =
+    when (resultNeeded) {
         Result.Win -> {
-            6 + when(opponentPlays) {
+            6 + when (opponentPlays) {
                 Plays.Rock -> 2
                 Plays.Paper -> 3
                 Plays.Scissors -> 1
             }
         }
+
         Result.Draw -> {
-            3 + when(opponentPlays) {
+            3 + when (opponentPlays) {
                 Plays.Rock -> 1
                 Plays.Paper -> 2
                 Plays.Scissors -> 3
             }
         }
+
         Result.Lose -> {
-            when(opponentPlays) {
+            when (opponentPlays) {
                 Plays.Rock -> 3
                 Plays.Paper -> 1
                 Plays.Scissors -> 2
             }
         }
     }
-    return points
-}
+
+fun mapResult(result: String) =
+    when (result) {
+        "X" -> Result.Lose
+        "Y" -> Result.Draw
+        "Z" -> Result.Win
+        else -> throw IllegalArgumentException("wrong result")
+    }
+
+fun mapPlays(opponent: String) =
+    when (opponent) {
+        "A" -> Plays.Rock
+        "B" -> Plays.Paper
+        "C" -> Plays.Scissors
+        else -> throw IllegalArgumentException("played the wrong symbol")
+    }
+
 
 //second part
 enum class Result {
     Win, Draw, Lose
 }
+
 //second part
 enum class Plays {
     Rock, Paper, Scissors
