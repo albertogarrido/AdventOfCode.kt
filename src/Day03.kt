@@ -7,7 +7,7 @@ fun main() {
 
 fun runScenario(input: List<String>) {
     val rucksacks = input.map {
-        Pair(it.substring(0, (it.length / 2)), it.substring(it.length / 2, it.length))
+        Pair(it.substring(0, it.length / 2), it.substring(it.length / 2, it.length))
     }
     println(part1(rucksacks))
     println(part2(input))
