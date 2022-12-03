@@ -7,7 +7,7 @@ fun main() {
 }
 
 // part 1
-fun part1(input: List<String>): Int {
+private fun part1(input: List<String>): Int {
     var points = 0
     input.forEach { round ->
         val (opponent, player) = round.split(" ")
@@ -39,7 +39,7 @@ fun symbolUsagePoints(player: String) = when (player) {
 }
 
 // part 2
-fun part2(input: List<String>): Int {
+private fun part2(input: List<String>): Int {
     var points = 0
     input.forEach { round ->
         val (opponent, result) = round.split(" ")

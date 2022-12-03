@@ -1,6 +1,5 @@
 import java.lang.IllegalArgumentException
 
-
 fun main() {
     runTests(readInput("day03_test"))
     runScenario(readInput("day03"))
