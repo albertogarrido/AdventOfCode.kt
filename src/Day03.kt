@@ -5,7 +5,7 @@ fun main() {
     runScenario(readInput("day03"))
 }
 
-fun runScenario(input: List<String>) {
+private fun runScenario(input: List<String>) {
     val rucksacks = input.map { buildRucksacks(it) }
     println(part1(rucksacks))
     println(part2(input))
@@ -35,7 +35,7 @@ private fun Char.priorityValue(): Int {
     }
 }
 
-fun runTests(testInput: List<String>) {
+private fun runTests(testInput: List<String>) {
     val testRucksacks = testInput.map { buildRucksacks(it) }
     val result = part1(testRucksacks)
     check(result == 157) {
