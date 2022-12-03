@@ -43,6 +43,6 @@ private fun runTests(testInput: List<String>) {
     }
     val result2 = part2(testInput)
     check(result2 == 70) {
-        "expected 70, obtained $result"
+        "expected 70, obtained $result2"
     }
 }
