@@ -6,9 +6,7 @@ fun main() {
 }
 
 fun runScenario(input: List<String>) {
-    val rucksacks = input.map {
-        Pair(it.substring(0, it.length / 2), it.substring(it.length / 2, it.length))
-    }
+    val rucksacks = input.map { buildRucksacks(it) }
     println(part1(rucksacks))
     println(part2(input))
 }
@@ -20,6 +18,9 @@ private fun part1(input: List<Pair<String, String>>) = input.sumOf { rucksack ->
 private fun part2(input: List<String>) = input.chunked(3).sumOf { group ->
     group[0].first { it in group[1] && it in group[2] }.priorityValue()
 }
+
+private fun buildRucksacks(input: String) =
+    Pair(input.substring(0, input.length / 2), input.substring(input.length / 2, input.length))
 
 /**
  *Lowercase item types a through z have priorities 1 through 26.
@@ -35,9 +36,7 @@ private fun Char.priorityValue(): Int {
 }
 
 fun runTests(testInput: List<String>) {
-    val testRucksacks = testInput.map {
-        Pair(it.substring(0, (it.length / 2)), it.substring(it.length / 2, it.length))
-    }
+    val testRucksacks = testInput.map { buildRucksacks(it) }
     val result = part1(testRucksacks)
     check(result == 157) {
         "expected 157, obtained $result"
