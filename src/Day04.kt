@@ -1,6 +1,6 @@
 fun main() {
     runTests()
-    runScenario(readInput("day04"))
+//    runScenario(readInput("day04"))
 }
 
 private fun runScenario(input: List<String>) {
@@ -58,17 +58,18 @@ private fun parseAssignments(input: List<String>) = input.map { items ->
 }
 
 private fun runTests() {
-    val testInput = readInput("day04_test_p1")
-    val resultP1 = part1(testInput)
-    check(resultP1 == 2) {
-        "expected 2, obtained $resultP1"
+    part1(readInput("day04_test_p1")).also {
+        check(it == 2) {
+            "expected 2, obtained $it"
+        }
     }
 
-    val testInput2 = readInput("day04_test_p2")
-    val resultP2 = part2(testInput2)
-    check(resultP2 == 4) {
-        "expected 4, obtained $resultP2"
+    part2(readInput("day04_test_p2")).also {
+        check(it == 4) {
+            "expected 4, obtained $it"
+        }
     }
+
     println(">> all tests passed <<")
 }
 

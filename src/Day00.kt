@@ -1,5 +1,5 @@
 fun main() {
-    runTests(readInput("day0X_test"))
+    runTests()
     runScenario(readInput("day0X"))
 }
 
@@ -16,8 +16,19 @@ private fun part2(input: List<String>): Int {
     return input.size
 }
 
-private fun runTests(testInput: List<String>) {
-    check(part1(testInput) == 1)
+private fun runTests() {
+
+    part1(readInput("day0X_test_p1")).also {
+        check(it == 1) {
+            "expected X, obtained $it"
+        }
+    }
+
+    part1(readInput("day0X_test_p2")).also {
+        check(it == 1) {
+            "expected X, obtained $it"
+        }
+    }
 
     println(">> all tests passed <<")
 }
