@@ -1,6 +1,6 @@
 fun main() {
     runTests(readInput("day0X_test"))
-    runScenario(readInput("daX01"))
+    runScenario(readInput("day0X"))
 }
 
 private fun runScenario(input: List<String>) {
@@ -18,4 +18,6 @@ private fun part2(input: List<String>): Int {
 
 private fun runTests(testInput: List<String>) {
     check(part1(testInput) == 1)
+
+    println(">> all tests passed <<")
 }

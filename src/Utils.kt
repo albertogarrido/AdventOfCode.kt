@@ -14,3 +14,18 @@ fun readInput(name: String) = File("src/inputs", "$name.txt")
 fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
     .toString(16)
     .padStart(32, '0')
+
+fun <E> Iterable<E>.print(
+    indexed: Boolean = false,
+    prefix: String = "",
+    suffix: String = "",
+    separator: String = ""
+) {
+    forEachIndexed { index, element ->
+        if (indexed) {
+            print("[$index]")
+        }
+        println("$prefix$element$suffix")
+        println(separator)
+    }
+}
