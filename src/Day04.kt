@@ -58,18 +58,30 @@ private fun parseAssignments(input: List<String>) = input.map { items ->
 }
 
 private fun runTests() {
-    part1(readInput("day04_test_p1")).also {
-        check(it == 2) {
-            "expected 2, obtained $it"
+    var passed = true
+
+    runCatching {
+        part1(readInput("day0X_test_p1")).also {
+            check(it == 1) {
+                "part 1: expected X, obtained $it"
+            }
         }
+    }.onFailure {
+        passed = false
+        System.err.println("[test failed] ${it.message}")
     }
 
-    part2(readInput("day04_test_p2")).also {
-        check(it == 4) {
-            "expected 4, obtained $it"
+    runCatching {
+        part2(readInput("day0X_test_p2")).also {
+            check(it == 1) {
+                "part 2: expected X, obtained $it"
+            }
         }
+    }.onFailure {
+        passed = false
+        System.err.println("[test failed] ${it.message}")
     }
 
-    println(">> all tests passed <<")
+    if (passed) println("\u001B[32m>> all tests passed <<\u001B[0m")
 }
 
