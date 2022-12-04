@@ -1,7 +1,10 @@
+package _2022
+
+import readInput
 import java.lang.IllegalArgumentException
 
 fun main() {
-    val input = readInput("day02")
+    val input = readInput("2022", "day02")
     println(part1(input))
     println(part2(input))
 }

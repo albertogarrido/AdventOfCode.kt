@@ -1,3 +1,7 @@
+package _2022
+
+import readInput
+
 fun main() {
     fun getCaloriesPerElf(input: List<String>): Array<Int> {
         val calories = Array(input.count { it == "" } + 2) { 0 }
@@ -28,7 +32,8 @@ fun main() {
         return sum
     }
 
-    val input = readInput("day01")
+    val input = readInput("2022", "day01")
+
     println("part1: ${part1(input)}")
     println("part2: ${part2(input)}")
 }

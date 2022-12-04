@@ -1,6 +1,10 @@
+package _2022
+
+import readInput
+
 fun main() {
     runTests()
-//    runScenario(readInput("day04"))
+    runScenario(readInput("2022","day04"))
 }
 
 private fun runScenario(input: List<String>) {
@@ -61,9 +65,9 @@ private fun runTests() {
     var passed = true
 
     runCatching {
-        part1(readInput("day0X_test_p1")).also {
-            check(it == 1) {
-                "part 1: expected X, obtained $it"
+        part1(readInput("2022", "day04_test_p1")).also {
+            check(it == 2) {
+                "part 1: expected 2, obtained $it"
             }
         }
     }.onFailure {
@@ -72,9 +76,9 @@ private fun runTests() {
     }
 
     runCatching {
-        part2(readInput("day0X_test_p2")).also {
-            check(it == 1) {
-                "part 2: expected X, obtained $it"
+        part2(readInput("2022", "day04_test_p2")).also {
+            check(it == 4) {
+                "part 2: expected 4, obtained $it"
             }
         }
     }.onFailure {

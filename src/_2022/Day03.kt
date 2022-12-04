@@ -1,8 +1,11 @@
+package _2022
+
+import readInput
 import java.lang.IllegalArgumentException
 
 fun main() {
-    runTests(readInput("day03_test"))
-    runScenario(readInput("day03"))
+    runTests(readInput("2022", "day03_test"))
+    runScenario(readInput("2022", "day03"))
 }
 
 private fun runScenario(input: List<String>) {
