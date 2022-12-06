@@ -26,6 +26,8 @@ fun <E> Iterable<E>.print(
             print("[$index]")
         }
         println("$prefix$element$suffix")
-        println(separator)
+        if(separator.isNotBlank()) {
+            println(separator)
+        }
     }
 }

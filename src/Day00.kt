@@ -17,18 +17,29 @@ private fun part2(input: List<String>): Int {
 }
 
 private fun runTests() {
+    var passed = true
 
-    part1(readInput("2022", "day0X_test_p1")).also {
-        check(it == 1) {
-            "expected X, obtained $it"
+    runCatching {
+        part1(readInput("xxxx", "day0X_test_p1")).also {
+            check(it == 2) {
+                "part 1: expected 2, obtained $it"
+            }
         }
+    }.onFailure {
+        passed = false
+        System.err.println("[test failed] ${it.message}")
     }
 
-    part1(readInput("2022", "day0X_test_p2")).also {
-        check(it == 1) {
-            "expected X, obtained $it"
+    runCatching {
+        part2(readInput("xxxx", "day0x_test_p2")).also {
+            check(it == 4) {
+                "part 2: expected 4, obtained $it"
+            }
         }
+    }.onFailure {
+        passed = false
+        System.err.println("[test failed] ${it.message}")
     }
 
-    println(">> all tests passed <<")
+    if (passed) println("\u001B[32m>> all tests passed <<\u001B[0m")
 }
