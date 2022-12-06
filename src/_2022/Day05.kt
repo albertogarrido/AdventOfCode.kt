@@ -1,48 +1,57 @@
 package _2022
-
+// todo not final, clean up
 import print
 import readInput
 
-data class Instruction(
-    val move: Int,
-    val from: Int,
-    val to: Int
-)
-
 fun main() {
-//    runTests()
+    runTests()
     runScenario(readInput("2022", "day05"))
 }
 
 private fun runScenario(input: List<String>) {
     println(part1(input))
-//    println(part2(input))
+    println(part2(input))
 }
 
 private fun part1(input: List<String>): Int {
-    input.take(9).print(indexed = true)
-
-    var crates = HashMap<Int, Array<Char>>()
-    val instructions = mutableListOf<Instruction>()
-
-    var instructionsStarted = false
-
-    input.take(9).forEachIndexed { index, line ->
-        instructionsStarted = line.extractDigits() == "123456789"
-        if (instructionsStarted) {
-
-        } else {
-            val elements = line.length / 4 + 1
-            (1..elements).forEach {
-//                crates[it] = crates[it].
-            }
-        }
-    }
-
+    val crates = parseCrates(input)
+//    crates.print()
+    val instructions = parseInstructions(input, startFrom = crates.size + 1)
+//    instructions.print()
     return input.size
 }
 
-private fun String.extractDigits() = replace("\\D+".toRegex(), "")
+fun parseCrates(input: List<String>): List<String> {
+    val cratesList = mutableListOf<String>()
+    val sacksNumber = -1
+    run breaking@{
+        (input.indices).forEach {
+            val line = input[it]
+            if (line.isBlank()) {
+                cratesList.removeLast()
+                return@breaking
+            }
+            cratesList.add(line)
+        }
+    }
+
+    val stacks = mutableListOf<MutableList<String>>()
+    cratesList.reversed().forEach { line ->
+
+    }
+
+    return cratesList
+}
+
+fun parseInstructions(input: List<String>, startFrom: Int): List<String> {
+    val instructions = mutableListOf<String>()
+    (startFrom until input.size).forEach {
+        instructions.add(input[it])
+    }
+    return instructions
+}
+
+private fun String.removeSpaces()  = replace("\\s".toRegex(), "")
 
 private fun part2(input: List<String>): Int {
     return input.size
