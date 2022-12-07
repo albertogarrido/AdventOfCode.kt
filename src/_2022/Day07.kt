@@ -16,8 +16,8 @@ private fun part1(input: List<String>): Int {
     val dirTree: HashMap<String, Int> = parseDirectoryTree(input)
     var total = 0
     dirTree.forEach {
-        if(it.key != "/") {
-            if(it.value < 100000) {
+        if (it.key != "/") {
+            if (it.value < 100000) {
                 total += it.value
             }
         }
@@ -33,12 +33,11 @@ private fun part2(input: List<String>): Int {
     val spaceToFree = spaceNeeded - currentFreeSpace
     val deletionCandidates = HashMap<String, Int>()
     dirTree.forEach {
-        if(it.value >= spaceToFree) {
+        if (it.value >= spaceToFree) {
             deletionCandidates[it.key] = it.value
         }
     }
-    val min = deletionCandidates.minBy { it.value }
-    return min.value
+    return deletionCandidates.minBy { it.value }.value
 }
 
 fun parseDirectoryTree(input: List<String>): HashMap<String, Int> {
@@ -48,25 +47,26 @@ fun parseDirectoryTree(input: List<String>): HashMap<String, Int> {
         val lineDetails = line.split(" ")
         when {
             isCommand(lineDetails[0]) -> {
-                if(lineDetails[1] == "cd" && lineDetails[2] != "..") {
-                    currentPath += if(lineDetails[2] == "/") {
+                if (lineDetails[1] == "cd" && lineDetails[2] != "..") {
+                    currentPath += if (lineDetails[2] == "/") {
                         lineDetails[2]
                     } else {
                         "${lineDetails[2]}/"
                     }
-                    if(!hashMap.containsKey(currentPath)) {
+                    if (!hashMap.containsKey(currentPath)) {
                         hashMap[currentPath] = 0
                     }
-                } else if(lineDetails[1] == "cd" && lineDetails[2] == "..") {
+                } else if (lineDetails[1] == "cd" && lineDetails[2] == "..") {
                     currentPath = removeLastDir(currentPath)
                 }
             }
+
             isFile(lineDetails[0]) -> {
                 hashMap[currentPath] = hashMap[currentPath]!!.plus(lineDetails[0].toInt())
                 var tempPath = currentPath
-                repeat((currentPath.split('/').size - 2 downTo  0).count()) {
+                repeat((currentPath.split('/').size - 2 downTo 0).count()) {
                     tempPath = removeLastDir(tempPath)
-                    if(hashMap.containsKey(tempPath)) {
+                    if (hashMap.containsKey(tempPath)) {
                         hashMap[tempPath] = hashMap[tempPath]!!.plus(lineDetails[0].toInt())
                     }
                 }
