@@ -1,5 +1,6 @@
 package _2022
 
+import printlnSuccess
 import readInput
 
 fun main() {
@@ -101,7 +102,7 @@ private fun runTests() {
         passed = false
         System.err.println("[test 1 failed] ${it.message}")
     }.onSuccess {
-        println("\u001B[32m>> [test 1 success] <<\u001B[0m")
+        printlnSuccess(">> [test 1 success] <<")
     }
 
     runCatching {
@@ -114,7 +115,7 @@ private fun runTests() {
         passed = false
         System.err.println("[test failed] ${it.message}")
     }.onSuccess {
-        println("\u001B[32m>> [test 2 success] <<\u001B[0m")
+        printlnSuccess(">> [test 2 success] <<")
     }
 
     runCatching {
@@ -127,7 +128,7 @@ private fun runTests() {
         passed = false
         System.err.println("[test final result 1 failed] ${it.message}")
     }.onSuccess {
-        println("\u001B[32m>> [test final result 1 success] <<\u001B[0m")
+        printlnSuccess(">> [test final result 1 success] <<")
     }
 
     runCatching {
@@ -140,8 +141,10 @@ private fun runTests() {
         passed = false
         System.err.println("[test final result 2 failed] ${it.message}")
     }.onSuccess {
-        println("\u001B[32m>> [test final result 2 success] <<\u001B[0m")
+        printlnSuccess(">> [test final result 2 success] <<")
     }
 
-    if (passed) println("\u001B[32m>> all tests passed <<\u001B[0m")
+    if (passed) printlnSuccess(">> all tests passed <<")
 }
+
+

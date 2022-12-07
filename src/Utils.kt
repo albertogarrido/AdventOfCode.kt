@@ -31,3 +31,10 @@ fun <E> Iterable<E>.print(
         }
     }
 }
+
+const val GREEN_OUTPUT_IN = "\u001B[32m"
+const val GREEN_OUTPUT_OUT = "\u001B[0m"
+
+fun printlnSuccess(content: String) {
+    println("$GREEN_OUTPUT_IN$content$GREEN_OUTPUT_OUT")
+}
