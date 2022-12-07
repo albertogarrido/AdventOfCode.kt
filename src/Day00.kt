@@ -4,8 +4,8 @@ fun main() {
 }
 
 private fun runScenario(input: List<String>) {
-    println(part1(input))
-    println(part2(input))
+    println("Result Part 1: ${part1(input)}")
+    println("Result Part 2: ${part2(input)}")
 }
 
 private fun part1(input: List<String>): Int {
