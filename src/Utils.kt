@@ -32,9 +32,22 @@ fun <E> Iterable<E>.print(
     }
 }
 
-const val GREEN_OUTPUT_IN = "\u001B[32m"
-const val GREEN_OUTPUT_OUT = "\u001B[0m"
+const val ANSI_RESET = "\u001B[0m"
+const val ANSI_BLACK = "\u001B[30m"
+const val ANSI_RED = "\u001B[31m"
+const val ANSI_GREEN = "\u001B[32m"
+const val ANSI_YELLOW = "\u001B[33m"
+const val ANSI_BLUE = "\u001B[34m"
+const val ANSI_PURPLE = "\u001B[35m"
+const val ANSI_CYAN = "\u001B[36m"
+const val ANSI_WHITE = "\u001B[37m"
 
 fun printlnSuccess(content: String) {
-    println("$GREEN_OUTPUT_IN$content$GREEN_OUTPUT_OUT")
+    println("$ANSI_GREEN$content$ANSI_RESET")
+}
+fun printSuccess(content: String) {
+    print("$ANSI_GREEN$content$ANSI_RESET")
+}
+fun printError(content: String) {
+    print("$ANSI_RED$content$ANSI_RESET")
 }

@@ -13,6 +13,7 @@ private fun runScenario(input: List<String>) {
     println("Result Part 2: ${part2(input)}")
 }
 
+
 private fun part1(input: List<String>): Int {
     val dirTree: HashMap<String, Int> = parseDirectoryTree(input)
     var total = 0
